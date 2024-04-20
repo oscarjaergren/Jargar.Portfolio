@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34814.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jargar.Portfolio", "Jargar.Portfolio\Jargar.Portfolio.csproj", "{985B5D82-FE3A-4376-8318-8BFD30A16C0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{985B5D82-FE3A-4376-8318-8BFD30A16C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985B5D82-FE3A-4376-8318-8BFD30A16C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985B5D82-FE3A-4376-8318-8BFD30A16C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985B5D82-FE3A-4376-8318-8BFD30A16C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8588EEA9-1618-44AB-A694-E205505F0E3B}
+	EndGlobalSection
+EndGlobal
