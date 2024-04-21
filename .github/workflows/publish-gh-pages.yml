@@ -66,12 +66,7 @@ jobs:
     - name: Publish artifact
       shell: bash
       run: |
-        dotnet publish Jargar.Portfolio/Jargar.Portfolio.csproj -c Release -o published --self-contained false --no-restore
-
-    - name: Compress files
-      shell: bash
-      run: |
-        find published -type f -exec gzip -k {} \;
+        dotnet publish Jargar.Portfolio/Jargar.Portfolio.csproj -c Release -o published
 
     - name: Upload artifact for web
       uses: actions/upload-pages-artifact@v1
