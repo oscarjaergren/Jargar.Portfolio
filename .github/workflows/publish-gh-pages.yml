@@ -68,16 +68,16 @@ jobs:
       run: |
         dotnet publish Jargar.Portfolio/Jargar.Portfolio.csproj -c Release -o published
 
-    - name: Change base-tag in index.html from / to Jargar.Portfolio
-      run: sed -i 's/<base href="\/" \/>/<base href="\/Jargar.Portfolio\/" \/>/g' dist/Web/wwwroot/index.html    
+    # - name: Change base-tag in index.html from / to Jargar.Portfolio
+    #   run: sed -i 's/<base href="\/" \/>/<base href="\/Jargar.Portfolio\/" \/>/g' dist/Web/wwwroot/index.html    
 
-      # Copy index.html to 404.html to serve the same file when a file is not found
-    - name: Copy index.html to 404.html
-      run: cp dist/Web/wwwroot/index.html dist/Web/wwwroot/404.html
+    #   # Copy index.html to 404.html to serve the same file when a file is not found
+    # - name: Copy index.html to 404.html
+    #   run: cp dist/Web/wwwroot/index.html dist/Web/wwwroot/404.html
 
-      # Add .nojekyll file to tell GitHub Pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-    - name: Add .nojekyll file
-      run: touch dist/Web/wwwroot/.nojekyll
+    #   # Add .nojekyll file to tell GitHub Pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+    # - name: Add .nojekyll file
+    #   run: touch dist/Web/wwwroot/.nojekyll
 
     - name: Upload artifact for web
       uses: actions/upload-pages-artifact@v1
