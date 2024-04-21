@@ -69,7 +69,7 @@ jobs:
            dotnet publish Jargar.Portfolio/Jargar.Portfolio.csproj -c Release -o published --self-contained false --no-restore find published -type f -exec gzip -k {} \;
 
     - name: Upload artifact for web
-      uses: actions/upload-pages-artifact@1
+      uses: actions/upload-pages-artifact@v1
       with:
         path: published/wwwroot
 
