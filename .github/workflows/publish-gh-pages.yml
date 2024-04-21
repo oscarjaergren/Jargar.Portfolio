@@ -48,6 +48,12 @@ jobs:
     #       $json.Replace("../", "$repository/") | Out-File -Path $_.FullName -Force
     #     }
 
+    - name: Restore workloads
+      shell: bash
+      run: |
+        dotnet workload restore
+
+
     - name: Restore NuGet packages
       shell: bash
       run: |
