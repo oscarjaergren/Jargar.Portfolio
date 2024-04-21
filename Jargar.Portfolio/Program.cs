@@ -1,5 +1,5 @@
+using Jargar.Portfolio;
 using Jargar.Portfolio.Client.Pages;
-using Jargar.Portfolio.Components;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
