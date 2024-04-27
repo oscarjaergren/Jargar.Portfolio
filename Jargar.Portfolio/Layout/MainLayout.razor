@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
+<MudThemeProvider Theme="MyCustomTheme" IsDarkMode=true/>
 
-<MudThemingProvider />
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
@@ -13,6 +13,11 @@
     </MudMainContent>
 </MudLayout>
 
+@* 
+<MudSwitch @bind-Value="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
+
+<MudText Class="ma-4">This is an example text!</MudText> *@
+
 @code {
     private bool _drawerOpen = true;
 
@@ -20,4 +25,47 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    private MudTheme _theme = new();
+    private bool _isDarkMode;
+
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Red.Default,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#FFBD39",
+                Tertiary = "#594AE2",
+                Black = "#27272f",
+                Background = "#0B1215",
+                BackgroundGrey = "#001e3c",
+                Surface = "#1A1A1A",
+                DrawerBackground = "#0C0C0C",
+                DrawerText = "rgba(255,255,255, 0.50)",
+                DrawerIcon = "rgba(255,255,255, 0.50)",
+                AppbarBackground = "rgb(10, 25, 41)",
+                AppbarText = "rgba(255,255,255, 0.70)",
+                TextPrimary = "#f5f5f5",
+                TextSecondary = "rgba(255,255,255, 0.50)",
+                ActionDefault = "rgb(173, 173, 177)",
+                ActionDisabled = "rgba(0, 127, 255, 0.40)",
+                ActionDisabledBackground = "rgba(0, 127, 255, 0.26)",
+                Divider = "rgba(0, 127, 255, 0.12)",
+                DividerLight = "rgba(20, 127, 255, 0.06)",
+                TableLines = "rgba(0, 127, 255, 0.12)",
+                LinesDefault = "rgba(0, 127, 255, 0.12)",
+                LinesInputs = "rgba(0, 127, 255, 0.3)",
+                TextDisabled = "rgba(0, 127, 255, 0.2)"
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            }
+        };
 }
