@@ -1,0 +1,204 @@
+﻿<h3>BlogPosts</h3>
+
+@code {
+
+}
+
+
+https://www.andreasnesheim.no/setting-up-ci-for-your-net-maui-android-app-in-azure-devops/
+
+
+steps:
+
+    - task: UseDotNet@2
+      displayName: Use dotnet 8.0
+      inputs:
+        packageType: 'sdk'
+        version: '8.0.x'
+
+    - task: Bash@3
+      displayName: Install MAUI
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet nuget locals all --clear
+          dotnet workload install maui-android
+
+    - task: Bash@3
+      displayName: 'Install JDK'
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Check if the DevTools directory exists and remove it
+          if [ -d "$HOME/DevTools" ]; then
+              rm -rf "$HOME/DevTools"
+          fi
+
+          # Create a new Development Tools directory
+          mkdir -p "$HOME/DevTools"
+
+
+          # Check if the DevTools directory was created successfully
+          if [ -d "$HOME/DevTools" ]; then
+              echo "Development Tools directory created successfully at: $HOME/DevTools"
+          else
+              echo "Failed to create Development Tools directory."
+              exit 1
+          fi
+
+          # Download the OpenJDK 11 LTS Version
+          wget -q "https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.7%2B10/OpenJDK11U-jdk_x64_linux_11.0.7_10.tar.gz" -O ~/DevTools/OpenJDK11U-jdk.tar.gz
+
+          # Check if the download was successful
+          if [ $? -eq 0 ]; then
+              echo "Download successful."
+          else
+              echo "Download failed. Check your internet connection or URL and try again."
+              exit 1
+          fi
+
+          # Extract the OpenJDK file
+          tar -zxvf ~/DevTools/OpenJDK11U-jdk.tar.gz -C ~/DevTools/
+
+          # Check if the extraction was successful
+          if [ $? -eq 0 ]; then
+              echo "Extraction successful."
+          else
+              echo "Extraction failed. Check the tar.gz file and try again."
+              exit 1
+          fi
+
+          # List contents of DevTools for debugging
+          echo "Listing contents of DevTools:"
+          ls ~/DevTools
+
+          # Set the path of the OpenJDK directory in environment variables
+          jdk_folder="/home/agent/DevTools/openjdk-11.0.7+10"
+
+          # Check if the JDK folder was found
+          if [ -n "$jdk_folder" ]; then
+              echo "JDK folder found: $jdk_folder"
+          else
+              echo "JDK folder not found. Check the extraction directory and try again."
+              exit 1
+          fi
+
+          export JAVA_HOME="$jdk_folder"
+          export PATH="$JAVA_HOME/bin:$PATH"
+
+          # Test the installation
+          java_version=$(java --version)
+          javac_version=$(javac --version)
+
+          echo "Java version: $java_version"
+          echo "Java compiler version: $javac_version"
+
+    - task: Bash@3
+      displayName: 'Install Android SDK'
+      inputs:
+        targetType: 'inline'
+        script: |
+            # Define the DevTools directory
+            DEVTOOLS_DIR="$HOME/DevTools"
+
+            # Create the DevTools directory if it doesn't exist
+            mkdir -p $DEVTOOLS_DIR/android-sdk
+
+            # Check if the DevTools directory was created successfully
+            if [ -d "$HOME/DevTools" ]; then
+                echo "Development Tools directory created successfully at: $HOME/DevTools"
+            else
+                echo "Failed to create Development Tools directory."
+                exit 1
+            fi
+
+            # Download the Android command line tools
+            echo "Downloading Android command line tools..."
+            wget https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip -O $DEVTOOLS_DIR/commandlinetools.zip
+
+            # Unzip the downloaded file into the DevTools directory
+            echo "Unzipping downloaded tools..."
+            unzip -o $DEVTOOLS_DIR/commandlinetools.zip -d $DEVTOOLS_DIR/android-sdk
+
+            # Move tools into cmdline-tools
+            mkdir -p $DEVTOOLS_DIR/android-sdk/cmdline-tools/tools
+            mv $DEVTOOLS_DIR/android-sdk/tools $DEVTOOLS_DIR/android-sdk/cmdline-tools
+
+            # Set the Android SDK root environment variable
+            echo "Setting ANDROID_SDK_ROOT environment variable..."
+            export ANDROID_SDK_ROOT=$DEVTOOLS_DIR/android-sdk
+            echo "ANDROID_SDK_ROOT set to $ANDROID_SDK_ROOT"
+
+            # Add the command line tools to the PATH
+            echo "Adding Android SDK command line tools to PATH..."
+            export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+            echo "PATH updated to include Android SDK command line tools"
+
+            # Set the path of the OpenJDK directory in environment variables
+            jdk_folder="/home/agent/DevTools/openjdk-11.0.7+10"
+
+            # Check if the JDK folder was found
+            if [ -n "$jdk_folder" ]; then
+                echo "JDK folder found: $jdk_folder"
+            else
+                echo "JDK folder not found. Check the extraction directory and try again."
+                exit 1
+            fi
+
+            # Correctly set JAVA_HOME and update the PATH environment variable
+            export JAVA_HOME="$jdk_folder"
+            export PATH="$JAVA_HOME/bin:$PATH"
+
+            # Update the PATH environment variable for Android SDK tools
+            export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+
+            # Accept the SDK manager licenses
+            echo "Accepting licenses..."
+            yes | $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --licenses
+
+            # Install platform tools and the platform for API level 34
+            echo "Installing platform tools and platform for API level 34..."
+            $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager "platform-tools" "platforms;android-34"
+
+            # Install build tools and the platform for API level 34
+            $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager "build-tools;34.0.0"
+
+            # Update Android Packages when necessary
+            $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --update
+
+
+  # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+    - task: Bash@3
+      displayName: Build Android App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd src/Blackfinch.Thrive.UI.Thriver.Mobile/
+          dotnet build -f net8.0-android -c Release /p:JavaSdkDirectory="/home/agent/DevTools/openjdk-11.0.7+10" /p:AndroidSdkDirectory="$HOME/DevTools/android-sdk/"
+
+    # Copy files to artifact directory
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.Artifactstagingdirectory)'
+      inputs:
+        Contents: |
+          **/*.aab
+          **/*.apk
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        CleanTargetFolder: true
+
+
+     # Publish artifacts
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish release'
+      inputs:
+       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+       ArtifactName: 'drop_android'
+       publishLocation: 'Container'
+
+      # Print android version
+    - task: PowerShell@2
+      displayName: App version
+      inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Android Version ${{ parameters.majorMinorVersionName }}.$(Build.BuildId)"
