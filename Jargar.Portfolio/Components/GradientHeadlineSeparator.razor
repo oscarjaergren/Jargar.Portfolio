@@ -1,0 +1,27 @@
+﻿<style>
+    .divider-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .gradient-divider {
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(to right, #593915 0%, hsla(33, 94%, 57%, 1) 100%);
+    }
+</style>
+
+<div>
+    <MudText Typo="Typo.h4" Color="Color.Primary">@HeadLine</MudText>
+
+    <div class="divider-container">
+        <hr class="gradient-divider" />
+    </div>
+
+</div>
+
+@code {
+        [Parameter] public string HeadLine { get; set; } = string.Empty;
+}
