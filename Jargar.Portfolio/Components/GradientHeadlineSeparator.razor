@@ -1,4 +1,9 @@
 ﻿<style>
+    :root {
+        --theme-color-start: var(--mud-palette-secondary);
+        --theme-color-end: var(--mud-palette-primary);
+    }
+
     .divider-container {
         display: flex;
         justify-content: center;
@@ -9,7 +14,7 @@
     .gradient-divider {
         width: 100%;
         height: 10px;
-        background: linear-gradient(to right, #593915 0%, hsla(33, 94%, 57%, 1) 100%);
+        background: linear-gradient(to right, var(--theme-color-start) 0%, var(--theme-color-end) 100%);
     }
 </style>
 
@@ -19,9 +24,8 @@
     <div class="divider-container">
         <hr class="gradient-divider" />
     </div>
-
 </div>
 
 @code {
-        [Parameter] public string HeadLine { get; set; } = string.Empty;
+    [Parameter] public string HeadLine { get; set; } = string.Empty;
 }

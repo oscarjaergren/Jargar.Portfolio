@@ -1,9 +1,10 @@
 ﻿@inherits LayoutComponentBase
-<MudThemeProvider Theme="MyCustomTheme" IsDarkMode=true/>
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="MyCustomTheme" />
 
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+    <MudAppBar Fixed="false" Elevation="1">
+        <MudSpacer/>
+        <MudSwitch Class="object-right ma-4" @bind-Value="@_isDarkMode" Color="Color.Primary" T="bool" Label="Light/Dark Mode" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
@@ -13,10 +14,7 @@
     </MudMainContent>
 </MudLayout>
 
-@* 
-<MudSwitch @bind-Value="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
 
-<MudText Class="ma-4">This is an example text!</MudText> *@
 
 @code {
     private bool _drawerOpen = true;
@@ -27,14 +25,33 @@
     }
 
     private MudTheme _theme = new();
-    private bool _isDarkMode;
+    private bool _isDarkMode = true;
 
     MudTheme MyCustomTheme = new MudTheme()
         {
             Palette = new PaletteLight()
             {
-                Secondary = Colors.Green.Accent4,
-                AppbarBackground = Colors.Red.Default,
+                Primary = "#145583", // A soft yellow for primary elements
+                Secondary = "#5F9EA0", // A muted teal for secondary elements
+                AppbarBackground = "#4A90E2", // A soft blue for the app bar background
+                Background = "#F5F5F5", // Light grey for the main background
+                BackgroundGrey = "#E0E0E0", // Slightly darker grey for background elements
+                Surface = "#F5F5F5", // White for surfaces
+                DrawerBackground = "#FAFAFA", // Very light grey for drawer backgrounds
+                DrawerText = "#3E3E3E", // Dark grey for drawer text
+                DrawerIcon = "#3E3E3E", // Dark grey for drawer icons
+                AppbarText = "#F5F5F5", // White for app bar text
+                TextPrimary = "#212121", // Dark grey for primary text
+                TextSecondary = "#757575", // Medium grey for secondary text
+                ActionDefault = "#FFBD39", // Matching primary color for actions
+                ActionDisabled = "rgba(95, 158, 160, 0.40)", // Transparent teal for disabled actions
+                ActionDisabledBackground = "rgba(95, 158, 160, 0.26)", // Slightly more transparent teal for disabled action backgrounds
+                Divider = "rgba(95, 158, 160, 0.12)", // Light teal for dividers
+                DividerLight = "rgba(95, 158, 160, 0.06)", // Very light teal for light dividers
+                TableLines = "rgba(95, 158, 160, 0.12)", // Light teal for table lines
+                LinesDefault = "rgba(95, 158, 160, 0.12)", // Light teal for default lines
+                LinesInputs = "rgba(95, 158, 160, 0.3)", // Teal for input lines
+                TextDisabled = "rgba(95, 158, 160, 0.2)" // Light teal for disabled text
             },
             PaletteDark = new PaletteDark()
             {
