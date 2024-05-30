@@ -6,9 +6,6 @@
         <MudSpacer/>
         <MudSwitch Class="object-right ma-4" @bind-Value="@_isDarkMode" Color="Color.Primary" T="bool" Label="Light/Dark Mode" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <NavMenu />
-    </MudDrawer>
     <MudMainContent Class="mt-16 pa-4">
         @Body
     </MudMainContent>

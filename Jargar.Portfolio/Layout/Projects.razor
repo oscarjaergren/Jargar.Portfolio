@@ -8,7 +8,7 @@
 
 
     @* Blackfinch *@
-    <MudItem xs="12" md="6">
+   @*  <MudItem xs="12" md="6">
         <MudPaper Class="pa-4">
 
             <MudStack Justify="Justify.SpaceBetween" Row=true>
@@ -43,7 +43,7 @@
                 </MudListItem>
             </MudList>
         </MudPaper>
-    </MudItem>
+    </MudItem> *@
 
     @* Pina Vida *@
     <MudItem xs="12" md="6">
@@ -51,31 +51,27 @@
 
             <MudStack Justify="Justify.SpaceBetween" Row=true>
                 <MudText Typo="Typo.h5" Color="Color.Primary">Senior Software Engineer</MudText>
-                <MudText Typo="Typo.body2">2023 - 2023</MudText>
+                <MudText Typo="Typo.body2">2023</MudText>
             </MudStack>
 
-            <MudText Typo="Typo.h6" Color="Color.Primary">Pina Vida, Edinburgh</MudText>
+            <MudText Typo="Typo.h6" Color="Color.Primary">Referrals Migrations</MudText>
 
             <MudText>
-                Led migration of Referrals, an integrated workflow system for diamond analysis hardware, from .NET Core 3.1 to .NET 7 while certifying high availability and optimised performance during migration process.
-                Developed Python scripts to execute complex algorithms, contributing to system's analytical capabilities. Partnered closely with cross-functional teams using Scrum and Three Amigos-style planned sessions to align Referrals with diverse needs of stakeholders.
+                Upgraded Referrals system from .NET Core 3.1 to .NET 7 to assure
+                compatibility with latest technologies and improve performance. Integrated Referrals with eight different types of diamond analysis
+                hardware, treating each piece of hardware as a microservice for easy management and maintenance. Implemented WPF framework
+                for user interface, following MVVM architecture for a structured and maintainable UI. Designed and implemented user interfaces for
+                both WPF and Angular components, focusing on creating intuitive and user-friendly interfaces to enhance overall user experience.
             </MudText>
             <MudList>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">Employed event-driven programming using Rx.NET to boost real-time data processing and improve system responsiveness.</MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">Maximized system responsiveness/real-time capabilities by employing Rx.Net to handle asynchronous/event-driven programming.</MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Integrated various embedded hardware components, such as diamond analysis hardware and NFC card readers, into Referral
-                    system, broadening capabilities.
+                    Architected Referrals system as microservices project, with each piece of diamond analysis hardware represented as an
+                    individual service, enhancing scalability and flexibility.
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Implemented critical features for system, including microservices, using C#, WPF, Angular, CosmosDB, and Azure DevOps
-                    Pipelines, enhancing system functionality.
-                </MudListItem>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Led comprehensive implementation of four out of eight distinct microservices.
-                </MudListItem>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Managed migration of main part of application, microservice-based WPF application in .NET C#, ensuring application met high
-                    availability requirements and leveraged Azure Service Bus event-driven architecture for seamless communication.
+                    Established software solutions integrating C#, .NET 7, WPF, Angular, CosmosDB, Azure DevOps Pipelines, and Python for
+                    enhanced functionality and streamlined development.
                 </MudListItem>
             </MudList>
         </MudPaper>
@@ -93,36 +89,24 @@
             <MudText Typo="Typo.h6" Color="Color.Primary">Dyneval, Edinburgh</MudText>
 
             <MudText>
-                Orchestrate end-to-end design and execution of technical solutions aligning seamlessly with customer specifications, leading to
-                enhanced customer satisfaction and retention. Collaborate closely with CEO and CTO, fostering efficient communication channels to
-                facilitate smooth progression of technical projects, ensuring alignment with organisational goals and objectives. Streamline
-                development process by implementing automated pipelines within Azure DevOps, enabling efficient code testing and benchmarking.
-                Mentor and guide junior developers, nurturing professional growth and increasing team cohesion. Craft top-notch training materials
-                and deliver training sessions to users, empowering clients in deploying/using products effectively. Guided and mentored junior
-                developers, fostering growth and instilling best practices in software development.
+                Led a team of three developers to launch DyneScan, an innovative product for
+                an agricultural startup, utilizing computer vision and machine learning for livestock semen analysis. Implemented automated error
+                reporting with Sentry and telemetry for gathering user behaviour and performance metrics, enhancing product's reliability /user
+                experience. Leveraged Nlog for logging, providing comprehensive visibility into application's behaviour/issues. Ensured product security
+                by using Auth0 service to secure API gateway. Deployed AWS MariaSQL for cloud database and SQLite for local database, certifying
+                data management flexibility and scalability.
             </MudText>
             <MudList>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">Employed event-driven programming using Rx.NET to boost real-time data processing and improve system responsiveness.</MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Strengthened development unit and facilitated project scalability by recruiting, interviewing, and onboarding three junior
-                    developers, two mid-level developers and software manager.
+                    Developed wireframes and mock-ups for various UI pages, tailoring user interface to meet specific user needs and usability standards
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Achieved 80% performance boost by reducing hot path processing time from 5 minutes to just 1 minute, and maximising user
-                    experience and operational efficiency.
+                    Designed and implemented an ASP.NET Core API to abstract core product functionality and ensure efficient communication
+                    between desktop and web platforms
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Augmented revenue streams by heading transformation of product from proof of concept to full-scale production launch,
-                    resulting in widespread adoption by over 100+ customers.
-                </MudListItem>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Guaranteed full compliance with data protection regulations, fortified data security measures, and mitigated potential legal
-                    risks associated with product by employing stringent GDPR software standards.
-                </MudListItem>
-                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Spearheaded development of a comprehensive solution, combining a WPF desktop app (C# .NET, XAML), React website, mobile
-                    app (Xamarin.Forms), and an Asp.net Core API on AWS. Implemented complex mathematical algorithms for fertility sample
-                    quality assessment, enhancing accuracy and efficiency.
+                    Engineered DyneScan as a vertical slice project, using WPF on .NET 6 for desktop application, mobile app (Xamarin.Forms) and
+                    React for web platform, guaranteeing seamless cross-platform user experience.
                 </MudListItem>
             </MudList>
         </MudPaper>
@@ -140,23 +124,56 @@
             <MudText Typo="Typo.h6" Color="Color.Primary">McDermott Group, Glasgow</MudText>
 
             <MudText>
-                Directed Xamarin.Forms mobile developer within dynamic team of 15 developers, cultivating collaboration and synergy in SCRUM
-                environment managed through Azure DevOps and MS Teams. Connected closely with cross-functional teams including frontend,
-                mobile, data, and design, assuring seamless coordination across various projects. Provided guidance and leadership to mobile
-                development team, steering efforts towards successful and timely delivery of projects. Facilitated informed decision-making and
-                refined project execution by actively engaging in sprint reviews and meetings, contributing valuable project updates/insights.
+                Monitored migration project to convert native Java applications into crossplatform solutions using C# Xamarin.Forms, optimising code efficiency and reducing development overhead. Functioned as sole mobile
+                developer within diverse team of 16 professionals, encompassing testers, backend, and frontend, fostering collaboration and knowledge
+                sharing. Leveraged Azure DevOps to establish a robust pipeline for building, releasing, and distributing mobile applications, streamlining
+                development and deployment processes as well as utilised Agile methodologies to ensure efficient project management.
             </MudText>
             <MudList>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Played pivotal role in development and architecture of mobile module for Chameleon Vision, project with central focus on
-                    both Machine Learning and IoT innovation
+                    Developed mobile application using MVVM framework with Shell for navigation, optimising code structure and maintainability.
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Automated deployment cycle by creating DevOps pipelines, amplifying efficiency/reducing manual intervention.
+                    Integrated app with microservices-based RESTful API architecture, enabling seamless communication and data exchange
+                    between various components of system.
                 </MudListItem>
                 <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
-                    Elevated workflow and advanced project progression by overseeing mobile team backlog management and task prioritisation,
-                    confirming optimal utilisation of resources.
+                    Implemented key features within app, including push notifications, authentication through IdentityServer4, and dependency
+                    injection, enhancing user engagement and security.
+                </MudListItem>
+            </MudList>
+        </MudPaper>
+    </MudItem>
+
+    @* McDermott Group *@
+    <MudItem xs="12" md="6">
+        <MudPaper Class="pa-4">
+
+            <MudStack Justify="Justify.SpaceBetween" Row=true>
+                <MudText Typo="Typo.h5" Color="Color.Primary">Mobile Engineer</MudText>
+                <MudText Typo="Typo.body2">2019 - 2021</MudText>
+            </MudStack>
+
+            <MudText Typo="Typo.h6" Color="Color.Primary">McDermott Group, Glasgow</MudText>
+
+            <MudText>
+                Strategised and
+                executed creation of brand-new IoT machine learning system, starting from scratch by collaborating closely with data science team.
+                Leveraged an array of IP cameras installed across multiple remote sites as data sources, enabling formulation of an innovative
+                automated safety alert system.
+            </MudText>
+            <MudList>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Played pivotal role in bridging gap between technical development and data science, guaranteeing seamless integration and
+                    functionality of machine learning system.
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Contributed to system design and implementation, maximising client safety by providing real-time automated alerts based on
+                    sophisticated machine learning algorithms.
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Leveraged powerful toolkits including Visual Studio 2022, SQLite, SQL Server, Xamarin, MAUI, Azure/Azure DevOps, Zeplin,
+                    Visual Studio 2019, Microsoft ML, Tensorflow, and Rust to drive project success
                 </MudListItem>
             </MudList>
         </MudPaper>
@@ -174,9 +191,62 @@
             <MudText Typo="Typo.h6" Color="Color.Primary">Consulence, Lund, Sweden</MudText>
 
             <MudText>
-                Tackled diverse array of projects in C# as outsourced consultant, ranging from medical technology desktop development using WPF
-                fin-tech development with Angular and e-commerce with Xamarin.Forms
+                Headed Shopping Project catering to customers and
+                salespeople, enabling purchase of perfume products and facilitating support for travelling sellers associated with Kenneth Green
+                Associations (UK). Orchestrated development of an application equipped with offline capabilities, supporting seamless operation, and
+                featuring sophisticated synchronisation system to update data whenever Wi-Fi connection is available. Released application on Google
+                Play Store/Apple App Store, granting widespread accessibility to users on Android and iOS platforms
             </MudText>
+
+            <MudList>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Managed mobile database using SQLite, employed Xamarin Forms for cross-platform development across Android, iOS, and
+                    UWP, and developed a robust API using .NET Core to facilitate communication with KGA database.
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Implemented comprehensive feature set, including handling of pictures, videos, sales history, multiple shopping carts,
+                    impersonation of customers for salespeople, contact management, brand management, and various user login types.
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Utilised Visual Studio 2019, Xamarin.Forms, XAML, and MVVM architecture to craft robust/user-friendly mobile applications.
+                </MudListItem>
+            </MudList>
+
+        </MudPaper>
+    </MudItem>
+
+    @* Consulence *@
+    <MudItem xs="12" md="6">
+        <MudPaper Class="pa-4">
+
+            <MudStack Justify="Justify.SpaceBetween" Row=true>
+                <MudText Typo="Typo.h5" Color="Color.Primary">Junior Software Developer</MudText>
+                <MudText Typo="Typo.body2">2016 – 2019</MudText>
+            </MudStack>
+
+            <MudText Typo="Typo.h6" Color="Color.Primary">Consulence, Lund, Sweden</MudText>
+
+            <MudText>
+                Responded to discontinuation of life-log API by Sony, devising
+                proactive solution to enable continued extraction of user data from SonySmartBand2. Designed and established platform-specific
+                solutions for both Android and iOS, leveraging Android Studio with Java and XCode with Swift to validate seamless data extraction.
+                Executed integration of Google Fitness API and Health Kit API into Android and iOS solutions, enabling retrieval of user data.
+            </MudText>
+
+            <MudList>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Created a custom API to receive and process extracted data, subsequently storing it in an Azure Server hosted on Amazon Web
+                    Services (AWS).
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Augmented project's functionality by developing a website, allowing users to access, visualise, and analyse data through
+                    interactive graphs and information displays.
+                </MudListItem>
+                <MudListItem Icon="@Icons.Material.Filled.Circle" IconSize="Size.Small">
+                    Leveraged diverse technology stacks including Android Studio with Java, XCode with Swift, SQL Server, Azure Server, .NET Core,
+                    AWS, HTML, CSS, and JavaScript to formulate comprehensive solutions for data extraction, storage, and visualisation
+                </MudListItem>
+            </MudList>
 
         </MudPaper>
     </MudItem>
