@@ -1,19 +1,54 @@
 ﻿@page "/"
 
-<MudStack>
+@inject IBrowserViewportService BrowserViewportService
+@implements IBrowserViewportObserver
+@implements IAsyncDisposable
 
-    <PageTitle>Portfolio</PageTitle>
+<MudBreakpointProvider>
+    <MudStack class="@stackClass">
+        <PageTitle>Portfolio</PageTitle>
+        <AboutMe />
+        @* <Timeline/> *@
+        @* <Resume /> *@
+        <Projects />
+        <Education />
+        <Articles />
+    </MudStack>
+</MudBreakpointProvider>
 
-    <AboutMe />
+@code {
+    private string stackClass = string.Empty;
 
-    @* <Timeline/> *@
+    protected override async Task OnInitializedAsync()
+    {
+        await BrowserViewportService.SubscribeAsync(this, fireImmediately: true);
+    }
 
-    @* <Resume /> *@
+    private async Task SetStackClass()
+    {
+        var breakpoint = await BrowserViewportService.GetCurrentBreakpointAsync();
+        stackClass = breakpoint >= Breakpoint.Md ? "desktop-margin" : "mobile-margin";
+        StateHasChanged();
+    }
 
-    <Projects/>
+    Guid IBrowserViewportObserver.Id { get; } = Guid.NewGuid();
 
-    <Education />
+    public async ValueTask DisposeAsync() => await BrowserViewportService.UnsubscribeAsync(this);
 
-    <Articles />
-</MudStack>
+    async Task IBrowserViewportObserver.NotifyBrowserViewportChangeAsync(BrowserViewportEventArgs browserViewportEventArgs)
+    {
+        await SetStackClass();
 
+         await InvokeAsync(StateHasChanged);
+    }
+}
+
+<style>
+    .desktop-margin {
+        margin: 0 20%;
+    }
+
+    .mobile-margin {
+        margin: 0 5%;
+    }
+</style>
