@@ -10,11 +10,9 @@
         <MudSelect T="TimelinePosition" @bind-Value="@_position" Label="TimelinePosition" Dense="true" Variant="Variant.Outlined">
             @if (_orientation == TimelineOrientation.Vertical)
             {
-                <MudSelectItem T="TimelinePosition" Value="TimelinePosition.Start">Start</MudSelectItem>
                 <MudSelectItem T="TimelinePosition" Value="TimelinePosition.Left">Left</MudSelectItem>
                 <MudSelectItem T="TimelinePosition" Value="TimelinePosition.Alternate">Alternate</MudSelectItem>
                 <MudSelectItem T="TimelinePosition" Value="TimelinePosition.Right">Right</MudSelectItem>
-                <MudSelectItem T="TimelinePosition" Value="TimelinePosition.End">End</MudSelectItem>
             }
             else if (_orientation == TimelineOrientation.Horizontal)
             {
@@ -31,53 +29,90 @@
 
 <MudTimeline TimelineOrientation="_orientation" TimelinePosition="_position" Reverse="_reverse">
 
-
     <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
-   
+
         <ItemDot>
-            <MudIcon Icon="@cube" />
+            <MudIcon Icon="@Icons.Material.Filled.Cake" />
         </ItemDot>
         <ItemContent>
             <MudCard>
                 <MudCardContent>
                     <MudText>
-                        Microsoft Certified: Azure Fundamentals, AZ-900, 2023 | Microsoft Certified: Foundational C#, 2023
+                        Born
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </ItemContent>
+        <ItemOpposite>
+            <MudText Color="Color.Success">1994</MudText>
+        </ItemOpposite>
+    </MudTimelineItem>
+
+
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+
+        <ItemDot>
+            <MudIcon Icon="@Icons.Material.Filled.School" />
+        </ItemDot>
+        <ItemContent>
+            <MudCard>
+                <MudCardContent>
+                    <MudText>
+                        Microsoft Certified: Azure Fundamentals, AZ-900
                     </MudText>
                 </MudCardContent>
                 <MudCardActions>
-                    <MudButton Variant="Variant.Text" Color="Color.Primary">View Cert</MudButton>
+                    <MudButton Href="https://learn.microsoft.com/api/credentials/share/en-us/OscarJrgren-1799/DEB777EC276838D8?sharingId=12085D3303F0931A" Variant="Variant.Text" Color="Color.Primary">View Cert</MudButton>
                 </MudCardActions>
             </MudCard>
         </ItemContent>
         <ItemOpposite>
-            <MudText Color="Color.Success">2023/05/02</MudText>
+            <MudText Color="Color.Success">2023</MudText>
         </ItemOpposite>
     </MudTimelineItem>
 
-    @foreach (var timeItem in timeLineItems)
-    {
-       
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+        <ItemContent>
+            <MudCard>
+                <MudCardContent>
+                    <MudText>Story of the day</MudText>
+                    <MudText Typo="Typo.body2">The quick, brown fox jumps over a lazy dog.</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </ItemContent>
+        <ItemOpposite>
+            <MudText Color="Color.Success">TEAAODWAODKWAO</MudText>
+        </ItemOpposite>
+    </MudTimelineItem>
 
 
-        <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
-            <ItemContent>
-                <MudCard>
-                    <MudCardContent>
-                        <MudText>Story of the day</MudText>
-                        <MudText Typo="Typo.body2">The quick, brown fox jumps over a lazy dog.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </ItemContent>
-            <ItemOpposite>
-                <MudText Color="Color.Success">@timeItem.Value</MudText>
-            </ItemOpposite>
-        </MudTimelineItem>
-    }
 </MudTimeline>
 
+
+@* @foreach (var timeItem in timeLineItems)
+{
+
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+        <ItemContent>
+            <MudCard>
+                <MudCardContent>
+                    <MudText>Story of the day</MudText>
+                    <MudText Typo="Typo.body2">The quick, brown fox jumps over a lazy dog.</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </ItemContent>
+        <ItemOpposite>
+            <MudText Color="Color.Success">@timeItem.Value</MudText>
+        </ItemOpposite>
+    </MudTimelineItem>
+}
+ *@
 
 
 @* <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
@@ -106,7 +141,7 @@
 </MudTimelineItem> *@
 
 @code {
-    private TimelinePosition _position { get; set; } = TimelinePosition.Start;
+    private TimelinePosition _position { get; set; } = TimelinePosition.Alternate;
     private TimelineOrientation _orientation { get; set; } = TimelineOrientation.Vertical;
     private bool _reverse { get; set; }
 
@@ -119,9 +154,37 @@
 
     };
 
+    private TimeLineItem[] items = new TimeLineItem[]
+           {
+            new TimeLineItem
+            {
+                Title = "First Item",
+                Text = "This is the first item",
+                Icon = "icon1"
+            },
+            new TimeLineItem
+            {
+                Title = "Second Item",
+                Text = "This is the second item",
+                Icon = "icon2"
+            },
+               // Add more items as needed
+           };
+
+    public record TimeLineItem
+    {
+        public string Title { get; set; }
+
+        public string Text { get; set; }
+
+        public string Icon { get; set; }
+    }
+
     const string cube = @"<svg style=""width:24px;height:24px"" viewBox=""0 0 24 24"">
-    <path fill=""currentColor"" d=""M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"" />
+      <path d=""M32 2C25.3726 2 20 7.37258 20 14V24C20 28.4183 16.4183 32 12 32C7.58172 32 4 28.4183 4 24C4 19.5817 7.58172 16 12 16H16C16 7.16344 23.1634 0 32 0C40.8366 0 48 7.16344 48 16H52C56.4183 16 60 19.5817 60 24C60 28.4183 56.4183 32 52 32C47.5817 32 44 28.4183 44 24V14C44 7.37258 38.6274 2 32 2ZM32 34C25.9249 34 20.4013 36.7454 16.6875 41.3125L15.3125 42.6875C11.7454 46.4013 9 51.9249 9 58C9 59.1046 9.89543 60 11 60H53C54.1046 60 55 59.1046 55 58C55 51.9249 52.2546 46.4013 48.6875 42.6875L47.3125 41.3125C43.5987 36.7454 38.0751 34 32 34ZM32 36C37.525 36 42.3671 38.5148 45.8125 42.1875L47.1875 43.5625C50.7627 47.1377 53 52.2055 53 57.5H11C11 52.2055 13.2373 47.1377 16.8125 43.5625L18.1875 42.1875C21.6329 38.5148 26.475 36 32 36ZM22 56C23.1046 56 24 55.1046 24 54C24 52.8954 23.1046 52 22 52C20.8954 52 20 52.8954 20 54C20 55.1046 20"" />
 </svg>";
+
+
 
     private void OnOrientationChange(TimelineOrientation value)
     {
